@@ -1,1 +1,509 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EstacMobile — gestão de estacionamento que não para quando a internet cai</title>
+<meta name="description" content="Cancela, caixa, mensalistas e relatórios no mesmo lugar. A guarita continua trabalhando mesmo sem internet.">
 
+<!-- OG: é o que aparece quando alguém manda o link no WhatsApp, e é assim que
+     software B2B circula de verdade. Sem isto o link vira uma caixa cinza. -->
+<meta property="og:title" content="EstacMobile — gestão de estacionamento">
+<meta property="og:description" content="A guarita continua trabalhando mesmo se a internet cair.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://estacmobile.com.br">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  // As MESMAS cores da tela de login do sistema. Site e produto com paletas
+  // diferentes fazem o cliente achar que entrou no lugar errado ao clicar em
+  // "Entrar".
+  tailwind.config = { theme: { extend: {
+    colors: { marinho: "#0F1B2D", marinhoEscuro: "#0A1420", ambar: "#F5A623" },
+    fontFamily: { titulo: ["'Space Grotesk'", "sans-serif"], corpo: ["Inter", "sans-serif"] },
+  } } };
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  .brilho {
+    background:
+      radial-gradient(circle at 18% 12%, rgba(245,166,35,.10) 0, transparent 45%),
+      radial-gradient(circle at 78% 68%, rgba(255,255,255,.035) 0, transparent 42%);
+  }
+</style>
+</head>
+
+<body class="font-corpo bg-white text-slate-800 antialiased">
+
+<!-- ================== TOPO ================== -->
+<header class="sticky top-0 z-50 border-b border-white/10 bg-marinho/95 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <span class="flex items-center gap-3">
+      <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-ambar shadow-lg shadow-ambar/25">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F1B2D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 17h14M6 17V9l2-4h8l2 4v8"/><circle cx="8" cy="17" r="2"/><circle cx="16" cy="17" r="2"/>
+        </svg>
+      </span>
+      <span>
+        <span class="block font-titulo text-[19px] font-bold leading-tight text-white">EstacMobile</span>
+        <span class="block text-[11px] text-white/45">Gestão de estacionamento</span>
+      </span>
+    </span>
+
+
+    <!-- ENTRAR aponta pro subdomínio da Dash. É o botão mais clicado de um
+         site B2B: quem já é cliente vem aqui pra entrar, não pra ler. -->
+    <nav class="hidden items-center gap-8 text-[14px] text-white/70 md:flex">
+      <a href="#recursos" class="hover:text-white">Recursos</a>
+      <a href="#papel" class="hover:text-white">Impressão</a>
+      <a href="#automacao" class="hover:text-white">Cancela</a>
+      <a href="#planos" class="hover:text-white">Planos</a>
+      <a href="#contato" class="hover:text-white">Contato</a>
+    </nav>
+
+    <a href="https://parking.estacmobile.com.br"
+       class="rounded-lg bg-ambar px-5 py-2.5 text-[14px] font-semibold text-marinho hover:brightness-105">
+      Entrar
+    </a>
+  </div>
+</header>
+
+<!-- ================== ABERTURA ================== -->
+<section class="brilho relative overflow-hidden bg-marinho">
+  <div class="mx-auto grid max-w-6xl items-center gap-12 px-6 py-20 lg:grid-cols-[1.05fr_1fr] lg:py-28">
+    <div>
+      <p class="mb-4 inline-block rounded-full border border-ambar/30 bg-ambar/10 px-3 py-1 text-[12px] font-semibold text-ambar">
+        Funciona sem internet
+      </p>
+      <h1 class="font-titulo text-[40px] font-bold leading-[1.1] text-white lg:text-[54px]">
+        A sua melhor escolha em cancelas de estacionamento
+      </h1>
+      <p class="mt-6 max-w-xl text-[17px] leading-relaxed text-white/60">
+        Cancela, caixa, mensalistas e relatórios no mesmo lugar. E a guarita continua
+        trabalhando mesmo se a internet cair — o movimento sobe sozinho quando ela volta.
+      </p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a href="#contato" data-rolar class="rounded-lg bg-ambar px-7 py-3.5 text-[15px] font-semibold text-marinho hover:brightness-105">
+          Falar com a gente
+        </a>
+        <a href="#planos" class="rounded-lg border border-white/20 px-7 py-3.5 text-[15px] font-semibold text-white hover:bg-white/5">
+          Ver planos
+        </a>
+      </div>
+      <p class="mt-6 text-[13px] text-white/35">
+        Instalação assistida · Sem taxa de setup · Cancela a qualquer momento
+      </p>
+    </div>
+
+    <!-- A CENA DO PRODUTO. Ilustração e não foto de banco de imagens: é a
+         cancela, a guarita e o carro, que é o que o cliente reconhece. -->
+    <div class="relative">
+<svg viewBox="0 0 640 420" class="w-full" aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="ip-mancha" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#2A93AD" stop-opacity=".16" />
+          <stop offset="100%" stop-color="#F5A623" stop-opacity=".05" />
+        </linearGradient>
+        <linearGradient id="ip-carro" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#3E88C4" />
+          <stop offset="100%" stop-color="#2A6396" />
+        </linearGradient>
+      </defs>
+
+      
+      <path fill="url(#ip-mancha)" d="M92 168c14-62 84-96 168-92 74 4 96 40 172 36 74-4 118 26 116 82-2 60-58 96-142 104-96 9-146-6-216-14-72-8-114-52-98-116z" />
+
+      
+      <g fill="#1B2C44">
+        <rect x="368" y="150" width="34" height="128" rx="2" />
+        <rect x="408" y="176" width="26" height="102" rx="2" />
+        <rect x="440" y="132" width="30" height="146" rx="2" />
+        <rect x="476" y="188" width="24" height="90" rx="2" />
+        <rect x="150" y="186" width="26" height="92" rx="2" />
+        <rect x="182" y="162" width="20" height="116" rx="2" />
+      </g>
+      
+      <g fill="#2A93AD" opacity=".35">
+        <rect x="376" y="162" width="6" height="8" rx="1" />
+        <rect x="388" y="162" width="6" height="8" rx="1" />
+        <rect x="376" y="180" width="6" height="8" rx="1" />
+        <rect x="448" y="146" width="6" height="8" rx="1" />
+        <rect x="458" y="164" width="6" height="8" rx="1" />
+        <rect x="158" y="200" width="6" height="8" rx="1" />
+        <rect x="188" y="176" width="6" height="8" rx="1" />
+      </g>
+
+      
+      <g>
+        <rect x="196" y="104" width="98" height="172" rx="14" fill="#12202F" stroke="#2A93AD" stroke-width="2.5" />
+        <rect x="232" y="114" width="26" height="4" rx="2" fill="#2A93AD" opacity=".5" />
+        
+                  <g transform="translate(0 0)">
+            <rect x="208" y="130" width="74" height="32" rx="7" fill="#1B2C44" />
+            <circle cx="222" cy="146" r="8" fill="#F5A623" />
+            <rect x="236" y="140" width="36" height="4" rx="2" fill="#2A93AD" opacity=".6" />
+            <rect x="236" y="149" width="24" height="4" rx="2" fill="#2A93AD" opacity=".35" />
+          </g>
+          <g transform="translate(0 42)">
+            <rect x="208" y="130" width="74" height="32" rx="7" fill="#1B2C44" />
+            <circle cx="222" cy="146" r="8" fill="#F5A623" />
+            <rect x="236" y="140" width="36" height="4" rx="2" fill="#2A93AD" opacity=".6" />
+            <rect x="236" y="149" width="24" height="4" rx="2" fill="#2A93AD" opacity=".35" />
+          </g>
+          <g transform="translate(0 84)">
+            <rect x="208" y="130" width="74" height="32" rx="7" fill="#1B2C44" />
+            <circle cx="222" cy="146" r="8" fill="#F5A623" />
+            <rect x="236" y="140" width="36" height="4" rx="2" fill="#2A93AD" opacity=".6" />
+            <rect x="236" y="149" width="24" height="4" rx="2" fill="#2A93AD" opacity=".35" />
+          </g>
+      </g>
+
+      
+      <g>
+        <path fill="url(#ip-carro)" d="M258 262v-18c0-6 4-11 10-12l16-3 14-16c3-4 7-6 12-6h40c5 0 9 2 12 6l14 16 16 3c6 1 10 6 10 12v18c0 5-4 8-8 8H266c-4 0-8-3-8-8z" />
+        
+        <path fill="#0F1B2D" opacity=".55" d="M292 216h44l12 14h-68z" />
+        
+        <rect x="262" y="238" width="14" height="7" rx="3.5" fill="#F5A623" />
+        <rect x="372" y="238" width="14" height="7" rx="3.5" fill="#F5A623" opacity=".5" />
+        
+        <circle cx="286" cy="272" r="15" fill="#0B1420" />
+        <circle cx="286" cy="272" r="6" fill="#2A93AD" opacity=".5" />
+        <circle cx="362" cy="272" r="15" fill="#0B1420" />
+        <circle cx="362" cy="272" r="6" fill="#2A93AD" opacity=".5" />
+      </g>
+
+      
+      <g>
+        
+        <rect x="426" y="196" width="26" height="84" rx="4" fill="#243449" />
+        <g fill="#F5A623">
+          <path d="M426 214h26v9h-26z" opacity=".9" />
+          <path d="M426 232h26v9h-26z" opacity=".9" />
+          <path d="M426 250h26v9h-26z" opacity=".9" />
+        </g>
+        
+        <g transform="rotate(-34 439 202)">
+          <rect x="439" y="196" width="150" height="13" rx="3" fill="#12202F" />
+                    <rect x="446" y="196" width="16" height="13" fill="#F5A623" />
+          <rect x="476" y="196" width="16" height="13" fill="#F5A623" />
+          <rect x="506" y="196" width="16" height="13" fill="#F5A623" />
+          <rect x="536" y="196" width="16" height="13" fill="#F5A623" />
+          <rect x="566" y="196" width="16" height="13" fill="#F5A623" />
+          
+          <rect x="576" y="196" width="13" height="13" rx="3" fill="#E5484D" />
+        </g>
+        
+        <circle cx="439" cy="202" r="7" fill="#33475F" />
+      </g>
+
+      
+      <path d="M150 288h380" stroke="#2A93AD" stroke-width="2" stroke-linecap="round" opacity=".25" />
+    </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ================== A DOR ================== -->
+<section class="border-b border-slate-100 bg-white py-20">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-titulo text-[32px] font-bold text-marinho">A internet cai. O estacionamento não pode parar.</h2>
+      <p class="mt-4 text-[16px] leading-relaxed text-slate-500">
+        A maioria dos sistemas de cancela é web. Sem conexão, a cinta não sobe, o
+        caixa não fecha e a fila cresce no portão. O EstacMobile foi feito ao contrário:
+        a guarita tem o próprio banco de dados e decide sozinha.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-6 md:grid-cols-3">
+      <div class="rounded-2xl border border-slate-200 p-7">
+        <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-marinho text-ambar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M2 12h20"/></svg>
+        </span>
+        <h3 class="mt-5 text-[17px] font-bold text-marinho">Continua abrindo</h3>
+        <p class="mt-2 text-[14px] leading-relaxed text-slate-500">
+          Mensalista, credenciado e avulso entram e saem normalmente. A guarita
+          conhece o cadastro inteiro, localmente.
+        </p>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-7">
+        <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-marinho text-ambar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+        </span>
+        <h3 class="mt-5 text-[17px] font-bold text-marinho">Continua cobrando</h3>
+        <p class="mt-2 text-[14px] leading-relaxed text-slate-500">
+          A cobrança offline usa a mesma tabela de preço, os mesmos convênios e
+          os mesmos selos que a nuvem usaria. O valor bate.
+        </p>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-7">
+        <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-marinho text-ambar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>
+        </span>
+        <h3 class="mt-5 text-[17px] font-bold text-marinho">Sobe sozinho depois</h3>
+        <p class="mt-2 text-[14px] leading-relaxed text-slate-500">
+          Voltou a internet, o movimento sobe em ordem. Nada é digitado de novo,
+          nada se perde.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== RECURSOS ================== -->
+<section id="recursos" class="bg-slate-50 py-20">
+  <div class="mx-auto max-w-6xl px-6">
+    <p class="text-[12px] font-bold uppercase tracking-widest text-ambar">Recursos</p>
+    <h2 class="mt-2 font-titulo text-[32px] font-bold text-marinho">Tudo que o pátio precisa, num lugar só</h2>
+
+    <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <!-- Cada card é uma coisa que o sistema faz DE VERDADE. Prometer o que
+           não existe é o jeito mais rápido de perder o cliente na implantação. -->
+      <div class="rounded-xl border border-slate-200 bg-white p-6">
+        <h3 class="text-[15px] font-bold text-marinho">Pátio e caixa</h3>
+        <p class="mt-2 text-[13.5px] leading-relaxed text-slate-500">
+          Entrada, saída, pagamento dividido, sangria e fechamento de caixa por operador.
+        </p>
+      </div>
+      <div class="rounded-xl border border-slate-200 bg-white p-6">
+        <h3 class="text-[15px] font-bold text-marinho">Mensalistas e credenciados</h3>
+        <p class="mt-2 text-[13.5px] leading-relaxed text-slate-500">
+          Vagas contratadas, cartões, placas, validade, boleto e cobrança recorrente.
+        </p>
+      </div>
+      <div class="rounded-xl border border-slate-200 bg-white p-6">
+        <h3 class="text-[15px] font-bold text-marinho">Convênio e selo eletrônico</h3>
+        <p class="mt-2 text-[13.5px] leading-relaxed text-slate-500">
+          A loja valida o desconto pelo portal dela. Sem carimbo, sem papel, com extrato.
+        </p>
+      </div>
+      <div class="rounded-xl border border-slate-200 bg-white p-6">
+        <h3 class="text-[15px] font-bold text-marinho">PIX, cartão e TEF</h3>
+        <p class="mt-2 text-[13.5px] leading-relaxed text-slate-500">
+          Pagamento online por QR, TEF integrado e pagamento no totem de autoatendimento.
+        </p>
+      </div>
+      <div class="rounded-xl border border-slate-200 bg-white p-6">
+        <h3 class="text-[15px] font-bold text-marinho">NFS-e nacional</h3>
+        <p class="mt-2 text-[13.5px] leading-relaxed text-slate-500">
+          Emissão automática na saída, com certificado digital e DANFSe em PDF.
+        </p>
+      </div>
+      <div class="rounded-xl border border-slate-200 bg-white p-6">
+        <h3 class="text-[15px] font-bold text-marinho">Lava rápido</h3>
+        <p class="mt-2 text-[13.5px] leading-relaxed text-slate-500">
+          Ordem de serviço junto do ticket, com comissão e nota própria.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== O PAPEL ================== -->
+<section id="papel" class="bg-white py-20">
+  <div class="mx-auto grid max-w-6xl items-center gap-14 px-6 lg:grid-cols-2">
+    <div>
+      <p class="text-[12px] font-bold uppercase tracking-widest text-ambar">Impressão</p>
+      <h2 class="mt-2 font-titulo text-[32px] font-bold text-marinho">O papel que o cliente leva</h2>
+      <p class="mt-5 text-[15.5px] leading-relaxed text-slate-500">
+        Ticket de entrada com código de barras, comprovante de saída com o cálculo
+        aberto e 2ª via quando a bobina acaba. O mesmo desenho no guichê, na
+        guarita e no celular — o cliente não recebe dois papéis diferentes do
+        mesmo estacionamento.
+      </p>
+      <ul class="mt-8 space-y-3.5 text-[14.5px] text-slate-600">
+        <li class="flex gap-3"><span class="text-ambar">▸</span> 58 mm e 80 mm, com colunas ajustáveis por impressora</li>
+        <li class="flex gap-3"><span class="text-ambar">▸</span> Rodapé e nome da empresa configuráveis</li>
+        <li class="flex gap-3"><span class="text-ambar">▸</span> Bluetooth no celular, USB e rede no guichê</li>
+      </ul>
+    </div>
+
+    <!-- Dois cupons de verdade, com os campos que o sistema imprime. -->
+    <div class="flex flex-wrap justify-center gap-6">
+      <div class="w-[240px] rounded-t-md bg-white p-5 font-mono text-[11px] leading-[1.7] text-slate-700 shadow-[0_10px_40px_rgba(15,27,45,.14)]"
+           style="clip-path: polygon(0 0,100% 0,100% 97%,92% 100%,84% 97%,76% 100%,68% 97%,60% 100%,52% 97%,44% 100%,36% 97%,28% 100%,20% 97%,12% 100%,4% 97%,0 100%)">
+        <p class="text-center text-[13px] font-bold tracking-wide">DD&amp;PARK</p>
+        <p class="text-center text-[10px] text-slate-400">Matriz · Rua das Flores, 120</p>
+        <p class="my-2 text-slate-300">--------------------------------</p>
+        <p class="text-center font-bold">COMPROVANTE DE ENTRADA</p>
+        <p class="my-1 text-center text-[26px] font-bold tracking-wider">FKW7228</p>
+        <p>Categoria:<span class="float-right">CARRO</span></p>
+        <p>Entrada:<span class="float-right">05/09/2026 08:14</span></p>
+        <p>Terminal:<span class="float-right">Entrada 1</span></p>
+        <div class="my-3 flex h-11 items-end justify-center gap-[2px]">
+          <span class="h-full w-[2px] bg-slate-800"></span><span class="h-full w-[1px] bg-slate-800"></span>
+          <span class="h-full w-[3px] bg-slate-800"></span><span class="h-full w-[1px] bg-slate-800"></span>
+          <span class="h-full w-[2px] bg-slate-800"></span><span class="h-full w-[3px] bg-slate-800"></span>
+          <span class="h-full w-[1px] bg-slate-800"></span><span class="h-full w-[2px] bg-slate-800"></span>
+          <span class="h-full w-[1px] bg-slate-800"></span><span class="h-full w-[3px] bg-slate-800"></span>
+          <span class="h-full w-[2px] bg-slate-800"></span><span class="h-full w-[1px] bg-slate-800"></span>
+          <span class="h-full w-[3px] bg-slate-800"></span><span class="h-full w-[2px] bg-slate-800"></span>
+          <span class="h-full w-[1px] bg-slate-800"></span><span class="h-full w-[2px] bg-slate-800"></span>
+        </div>
+        <p class="text-center text-[10px] tracking-widest">75256246</p>
+        <p class="my-2 text-slate-300">--------------------------------</p>
+        <p class="text-center text-[10px]">Apresente este ticket na saída</p>
+      </div>
+
+      <div class="mt-8 w-[240px] rounded-t-md bg-white p-5 font-mono text-[11px] leading-[1.7] text-slate-700 shadow-[0_10px_40px_rgba(15,27,45,.14)]"
+           style="clip-path: polygon(0 0,100% 0,100% 97%,92% 100%,84% 97%,76% 100%,68% 97%,60% 100%,52% 97%,44% 100%,36% 97%,28% 100%,20% 97%,12% 100%,4% 97%,0 100%)">
+        <p class="text-center text-[13px] font-bold tracking-wide">DD&amp;PARK</p>
+        <p class="my-2 text-slate-300">--------------------------------</p>
+        <p class="text-center font-bold">COMPROVANTE DE SAIDA</p>
+        <p class="my-1 text-center text-[26px] font-bold tracking-wider">FKW7228</p>
+        <p>Entrada:<span class="float-right">08:14</span></p>
+        <p>Saida:<span class="float-right">09:49</span></p>
+        <p>Permanencia:<span class="float-right">1h 35min</span></p>
+        <p class="my-2 text-slate-300">--------------------------------</p>
+        <p>Valor do ticket<span class="float-right">R$ 17,00</span></p>
+        <p>Descontos<span class="float-right">-R$ 5,00</span></p>
+        <p class="text-[13px] font-bold">TOTAL<span class="float-right">R$ 12,00</span></p>
+        <p class="my-2 text-slate-300">--------------------------------</p>
+        <p class="font-bold">COMO ESTE VALOR FOI CALCULADO</p>
+        <p class="text-[10px] text-slate-500">Tempo no patio:<span class="float-right">1h 35min</span></p>
+        <p class="text-[10px] text-slate-500">2a hora:<span class="float-right">R$ 5,00</span></p>
+        <p class="text-[10px] text-slate-500">Convenio Loja A:<span class="float-right">-R$ 5,00</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== AUTOMAÇÃO ================== -->
+<section id="automacao" class="bg-marinho py-20">
+  <div class="mx-auto grid max-w-6xl items-center gap-14 px-6 lg:grid-cols-2">
+    <div>
+      <p class="text-[12px] font-bold uppercase tracking-widest text-ambar">Automação de cancela</p>
+      <h2 class="mt-2 font-titulo text-[32px] font-bold text-white">Reconhece o cliente e abre. Sem operador.</h2>
+      <p class="mt-5 text-[15.5px] leading-relaxed text-white/60">
+        Cartão de aproximação, código de barras, placa ou o rosto do próprio cliente.
+        A decisão é tomada na guarita em milissegundos, com validade, vaga e
+        antipassback conferidos antes de a cinta subir.
+      </p>
+      <ul class="mt-8 space-y-3.5 text-[14.5px] text-white/70">
+        <li class="flex gap-3"><span class="text-ambar">▸</span> Várias cancelas na mesma máquina, com entrada e saída independentes</li>
+        <li class="flex gap-3"><span class="text-ambar">▸</span> Um cartão, um carro: o mesmo cartão não entra duas vezes</li>
+        <li class="flex gap-3"><span class="text-ambar">▸</span> Tela virada para o cliente, com as mensagens que você escreve</li>
+        <li class="flex gap-3"><span class="text-ambar">▸</span> Cobrança na guarita quando a internet está fora</li>
+      </ul>
+    </div>
+
+    <div class="rounded-2xl border border-white/10 bg-marinhoEscuro p-10">
+      <p class="text-[11px] font-bold uppercase tracking-widest text-white/30">Na tela da cancela</p>
+      <p class="mt-6 font-titulo text-[38px] font-bold leading-none text-white">Bem-vindo!</p>
+      <p class="mt-3 text-[20px] font-semibold text-white/80">Everton F.</p>
+      <div class="mt-8 h-px bg-white/10"></div>
+      <p class="mt-6 text-[13px] leading-relaxed text-white/40">
+        Texto, cor e voz configuráveis por situação — quem entra, quem é barrado,
+        quem está sem vaga.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================== PLANOS ================== -->
+<section id="planos" class="bg-white py-20">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="text-[12px] font-bold uppercase tracking-widest text-ambar">Planos</p>
+      <h2 class="mt-2 font-titulo text-[32px] font-bold text-marinho">Pague pelo que você usa</h2>
+      <p class="mt-4 text-[15.5px] text-slate-500">
+        Todos incluem a automação de cancela e o funcionamento offline. O que muda
+        são os módulos liberados.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-6 lg:grid-cols-3">
+      <!-- ESSENCIAL -->
+      <div class="flex flex-col rounded-2xl border border-slate-200 p-8">
+        <h3 class="font-titulo text-[21px] font-bold text-marinho">Essencial</h3>
+        <p class="mt-2 text-[13.5px] text-slate-500">Para o estacionamento rotativo.</p>
+        <p class="mt-6 text-[13px] text-slate-400">a partir de</p>
+        <p class="font-titulo text-[36px] font-bold text-marinho">R$ 000<span class="text-[15px] font-medium text-slate-400">/mês</span></p>
+        <ul class="mt-7 space-y-3 text-[14px] text-slate-600">
+          <li>✓ Pátio, entrada e saída</li>
+          <li>✓ Caixa e fechamento</li>
+          <li>✓ Tabela de preço e convênios</li>
+          <li>✓ Automação de cancela</li>
+          <li>✓ Relatórios</li>
+        </ul>
+        <a href="#contato" class="mt-8 rounded-lg border border-marinho py-3 text-center text-[14px] font-semibold text-marinho hover:bg-slate-50">Falar com a gente</a>
+      </div>
+
+      <!-- COMPLETO — o do meio é o que se quer vender, e por isso é o destacado -->
+      <div class="relative flex flex-col rounded-2xl border-2 border-ambar bg-marinho p-8 shadow-xl">
+        <span class="absolute -top-3 left-8 rounded-full bg-ambar px-3 py-1 text-[11px] font-bold text-marinho">Mais escolhido</span>
+        <h3 class="font-titulo text-[21px] font-bold text-white">Completo</h3>
+        <p class="mt-2 text-[13.5px] text-white/50">Mensalistas e serviços no mesmo pátio.</p>
+        <p class="mt-6 text-[13px] text-white/40">a partir de</p>
+        <p class="font-titulo text-[36px] font-bold text-white">R$ 000<span class="text-[15px] font-medium text-white/40">/mês</span></p>
+        <ul class="mt-7 space-y-3 text-[14px] text-white/75">
+          <li>✓ Tudo do Essencial</li>
+          <li>✓ Mensalistas e credenciados</li>
+          <li>✓ Boleto e cobrança recorrente</li>
+          <li>✓ Lava rápido</li>
+          <li>✓ Selo eletrônico</li>
+        </ul>
+        <a href="#contato" class="mt-8 rounded-lg bg-ambar py-3 text-center text-[14px] font-semibold text-marinho hover:brightness-105">Falar com a gente</a>
+      </div>
+
+      <!-- MÁXIMO -->
+      <div class="flex flex-col rounded-2xl border border-slate-200 p-8">
+        <h3 class="font-titulo text-[21px] font-bold text-marinho">Máximo</h3>
+        <p class="mt-2 text-[13.5px] text-slate-500">Operação com fiscal, totem e nota.</p>
+        <p class="mt-6 text-[13px] text-slate-400">a partir de</p>
+        <p class="font-titulo text-[36px] font-bold text-marinho">R$ 000<span class="text-[15px] font-medium text-slate-400">/mês</span></p>
+        <ul class="mt-7 space-y-3 text-[14px] text-slate-600">
+          <li>✓ Tudo do Completo</li>
+          <li>✓ NFS-e nacional</li>
+          <li>✓ Totem de autoatendimento</li>
+          <li>✓ Reconhecimento facial</li>
+          <li>✓ PIX e TEF integrados</li>
+          <li>✓ Várias unidades</li>
+        </ul>
+        <a href="#contato" class="mt-8 rounded-lg border border-marinho py-3 text-center text-[14px] font-semibold text-marinho hover:bg-slate-50">Falar com a gente</a>
+      </div>
+    </div>
+
+    <p class="mt-8 text-center text-[12.5px] text-slate-400">
+      Os valores estão como <strong>R$ 000</strong> de propósito — defina antes de publicar.
+    </p>
+  </div>
+</section>
+
+<!-- ================== CONTATO ================== -->
+<section id="contato" class="bg-slate-50 py-20">
+  <div class="mx-auto max-w-3xl px-6 text-center">
+    <h2 class="font-titulo text-[32px] font-bold text-marinho">Vamos conversar sobre o seu pátio</h2>
+    <p class="mt-4 text-[15.5px] text-slate-500">
+      Conte quantas vagas, quantas cancelas e se já tem equipamento instalado.
+      A gente responde com o que dá para aproveitar.
+    </p>
+    <div class="mt-9 flex flex-wrap justify-center gap-3">
+      <a href="https://wa.me/5511000000000" class="rounded-lg bg-ambar px-8 py-3.5 text-[15px] font-semibold text-marinho hover:brightness-105">WhatsApp</a>
+      <a href="mailto:contato@estacmobile.com.br" class="rounded-lg border border-slate-300 px-8 py-3.5 text-[15px] font-semibold text-marinho hover:bg-white">contato@estacmobile.com.br</a>
+    </div>
+    <p class="mt-6 text-[12.5px] text-slate-400">Troque o número do WhatsApp antes de publicar.</p>
+  </div>
+</section>
+
+<!-- ================== RODAPÉ ================== -->
+<footer class="bg-marinho py-12">
+  <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 text-center sm:flex-row sm:text-left">
+    <div>
+      <p class="font-titulo text-[17px] font-bold text-white">EstacMobile</p>
+      <p class="mt-1 text-[12.5px] text-white/40">Gestão de estacionamento · CNPJ 00.000.000/0001-00</p>
+    </div>
+    <a href="https://parking.estacmobile.com.br"
+       class="rounded-lg border border-white/20 px-6 py-2.5 text-[13px] font-semibold text-white hover:bg-white/5">
+      Área do cliente
+    </a>
+  </div>
+</footer>
+
+</body>
+</html>
