@@ -25,4 +25,4 @@ EXPOSE 80
 # HEALTHCHECK: o EasyPanel usa isto pra saber se o contêiner subiu de verdade,
 # em vez de assumir que sim porque o processo existe.
 #HEALTHCHECK --interval=30s --timeout=3s \
- # CMD wget -q --spider http://localhost/ || exit 1
+#  CMD wget -q --spider http://localhost/ || exit 1
