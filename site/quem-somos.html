@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quem somos — EstacMobile</title>
+<meta name="description" content="Conheça a EstacMobile: por que existimos e o que guia o produto.">
+
+<!-- OG: é o que aparece quando alguém manda o link no WhatsApp, e é assim que
+     software B2B circula de verdade. Sem isto o link vira uma caixa cinza. -->
+<meta property="og:title" content="Quem somos — EstacMobile">
+<meta property="og:description" content="Conheça a EstacMobile: por que existimos e o que guia o produto.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://estacmobile.com.br">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  // As MESMAS cores da tela de login do sistema. Site e produto com paletas
+  // diferentes fazem o cliente achar que entrou no lugar errado ao clicar em
+  // "Entrar".
+  tailwind.config = { theme: { extend: {
+    colors: { marinho: "#0F1B2D", marinhoEscuro: "#0A1420", ambar: "#F5A623" },
+    fontFamily: { titulo: ["'Space Grotesk'", "sans-serif"], corpo: ["Inter", "sans-serif"] },
+  } } };
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  .brilho {
+    background:
+      radial-gradient(circle at 18% 12%, rgba(245,166,35,.10) 0, transparent 45%),
+      radial-gradient(circle at 78% 68%, rgba(255,255,255,.035) 0, transparent 42%);
+  }
+</style>
+</head>
+
+
+<body class="font-corpo bg-white text-slate-800 antialiased">
+
+<header class="sticky top-0 z-50 border-b border-white/10 bg-marinho/95 backdrop-blur">
+  <div class="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4">
+    <span class="flex items-center gap-3">
+      <!-- LOGO-CARRO-DASH-V10 -->
+      <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-ambar shadow-lg shadow-ambar/25">
+        <svg width="30" height="20" viewBox="5.9 7.2 12 8.2" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7.7 8.4 H12 L13.7 9.8 H14.9 L16.6 11.0
+                   C16.7 11.3 16.8 11.6 16.8 12.0
+                   V12.9 H7.0 V11.6
+                   C7.0 10.2 7.2 9.2 7.7 8.4 Z"
+                fill="none" stroke="#0F1B2D" stroke-width="0.95" stroke-linejoin="round" stroke-linecap="round"/>
+          <circle cx="9.4" cy="13.1" r="1.05" fill="none" stroke="#0F1B2D" stroke-width="0.95"/>
+          <circle cx="14.6" cy="13.1" r="1.05" fill="none" stroke="#0F1B2D" stroke-width="0.95"/>
+        </svg>
+      </span>
+      <span>
+        <span class="block font-titulo text-[19px] font-bold leading-tight text-white">EstacMobile</span>
+        <span class="block text-[11px] text-white/45">Gestão de estacionamento</span>
+      </span>
+    </span>
+
+
+    <!-- ENTRAR aponta pro subdomínio da Dash. É o botão mais clicado de um
+         site B2B: quem já é cliente vem aqui pra entrar, não pra ler. -->
+    <nav class="hidden items-center gap-8 text-[14px] text-white/70 md:flex">
+      <a href="#recursos" class="hover:text-white">Recursos</a>
+      <a href="#papel" class="hover:text-white">Impressão</a>
+      <a href="#automacao" class="hover:text-white">Cancela</a>
+      <a href="#planos" class="hover:text-white">Planos</a>
+      <a href="#contato" class="hover:text-white">Contato</a>
+    </nav>
+
+    <a href="https://parking.estacmobile.com.br"
+       class="rounded-lg bg-ambar px-5 py-2.5 text-[14px] font-semibold text-marinho hover:brightness-105">
+      Entrar
+    </a>
+  </div>
+</header>
+
+<section class="bg-white py-16 sm:py-20">
+  <div class="mx-auto max-w-3xl px-6">
+
+    <p class="text-[12.5px] font-bold uppercase tracking-widest text-ambar">EstacMobile</p>
+    <h1 class="mt-3 font-titulo text-[32px] font-bold text-marinho sm:text-[38px]">Quem somos</h1>
+    <p class="mt-6 text-[15.5px] leading-relaxed text-slate-600">
+      A EstacMobile nasceu de um problema bem prático: pátio de estacionamento não pode parar
+      quando a internet cai. Depois de ver operações travarem por causa disso — fila na cancela,
+      cliente irritado, operador sem saber o que fazer — construímos um sistema pensado pra
+      funcionar primeiro localmente, na guarita, e sincronizar depois.
+    </p>
+    <p class="mt-4 text-[15.5px] leading-relaxed text-slate-600">
+      Hoje ajudamos pátios de diferentes tamanhos a organizar cancela, caixa, mensalistas e
+      relatórios num único lugar, sem depender de internet estável pra continuar cobrando e
+      liberando veículos.
+    </p>
+
+    <h2 class="mt-12 font-titulo text-[22px] font-bold text-marinho">O que nos guia</h2>
+    <ul class="mt-5 space-y-3 text-[15px] text-slate-600">
+      <li class="flex gap-3"><span class="text-ambar">▸</span> O sistema não pode ser o motivo de uma fila — ele existe pra evitar filas.</li>
+      <li class="flex gap-3"><span class="text-ambar">▸</span> Quem opera a guarita no dia a dia precisa entender a tela em segundos, sem treinamento longo.</li>
+      <li class="flex gap-3"><span class="text-ambar">▸</span> Dado de cobrança e de acesso tem que ser auditável — validade, vaga e antipassback conferidos antes da cancela abrir.</li>
+    </ul>
+
+    <h2 class="mt-12 font-titulo text-[22px] font-bold text-marinho">Fale com a gente</h2>
+    <p class="mt-4 text-[15.5px] leading-relaxed text-slate-600">
+      Tem um pátio e quer entender se a EstacMobile encaixa na sua operação? Manda uma mensagem
+      pelo <a href="index.html#contato" class="font-semibold text-marinho underline underline-offset-2">canal de contato</a>.
+    </p>
+
+  </div>
+</section>
+
+<footer class="bg-marinho py-12">
+  <div class="mx-auto max-w-[1400px] px-6">
+    <div class="flex flex-col items-center justify-between gap-6 text-center sm:flex-row sm:text-left">
+      <div>
+        <p class="font-titulo text-[17px] font-bold text-white">EstacMobile</p>
+        <p class="mt-1 text-[12.5px] text-white/40">Gestão de estacionamento · CNPJ 00.000.000/0001-00</p>
+      </div>
+      <a href="https://parking.estacmobile.com.br"
+         class="rounded-lg border border-white/20 px-6 py-2.5 text-[13px] font-semibold text-white hover:bg-white/5">
+        Área do cliente
+      </a>
+    </div>
+    <div class="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-center sm:flex-row sm:text-left">
+      <p class="text-[12px] text-white/35">© 2026 EstacMobile. Todos os direitos reservados.</p>
+      <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[12.5px] text-white/50">
+        <a href="quem-somos.html" class="hover:text-white">Quem somos</a>
+        <a href="termos-de-uso.html" class="hover:text-white">Termos de Uso</a>
+        <a href="politica-de-privacidade.html" class="hover:text-white">Política de Privacidade</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+
+</body>
+</html>
