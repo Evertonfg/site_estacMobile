@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Política de Privacidade — EstacMobile</title>
+<meta name="description" content="Política de Privacidade e proteção de dados da EstacMobile.">
+
+<!-- OG: é o que aparece quando alguém manda o link no WhatsApp, e é assim que
+     software B2B circula de verdade. Sem isto o link vira uma caixa cinza. -->
+<meta property="og:title" content="Política de Privacidade — EstacMobile">
+<meta property="og:description" content="Política de Privacidade e proteção de dados da EstacMobile.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://estacmobile.com.br">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  // As MESMAS cores da tela de login do sistema. Site e produto com paletas
+  // diferentes fazem o cliente achar que entrou no lugar errado ao clicar em
+  // "Entrar".
+  tailwind.config = { theme: { extend: {
+    colors: { marinho: "#0F1B2D", marinhoEscuro: "#0A1420", ambar: "#F5A623" },
+    fontFamily: { titulo: ["'Space Grotesk'", "sans-serif"], corpo: ["Inter", "sans-serif"] },
+  } } };
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  .brilho {
+    background:
+      radial-gradient(circle at 18% 12%, rgba(245,166,35,.10) 0, transparent 45%),
+      radial-gradient(circle at 78% 68%, rgba(255,255,255,.035) 0, transparent 42%);
+  }
+</style>
+</head>
+
+
+<body class="font-corpo bg-white text-slate-800 antialiased">
+
+<header class="sticky top-0 z-50 border-b border-white/10 bg-marinho/95 backdrop-blur">
+  <div class="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4">
+    <span class="flex items-center gap-3">
+      <!-- LOGO-CARRO-DASH-V10 -->
+      <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-ambar shadow-lg shadow-ambar/25">
+        <svg width="30" height="20" viewBox="5.9 7.2 12 8.2" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7.7 8.4 H12 L13.7 9.8 H14.9 L16.6 11.0
+                   C16.7 11.3 16.8 11.6 16.8 12.0
+                   V12.9 H7.0 V11.6
+                   C7.0 10.2 7.2 9.2 7.7 8.4 Z"
+                fill="none" stroke="#0F1B2D" stroke-width="0.95" stroke-linejoin="round" stroke-linecap="round"/>
+          <circle cx="9.4" cy="13.1" r="1.05" fill="none" stroke="#0F1B2D" stroke-width="0.95"/>
+          <circle cx="14.6" cy="13.1" r="1.05" fill="none" stroke="#0F1B2D" stroke-width="0.95"/>
+        </svg>
+      </span>
+      <span>
+        <span class="block font-titulo text-[19px] font-bold leading-tight text-white">EstacMobile</span>
+        <span class="block text-[11px] text-white/45">Gestão de estacionamento</span>
+      </span>
+    </span>
+
+
+    <!-- ENTRAR aponta pro subdomínio da Dash. É o botão mais clicado de um
+         site B2B: quem já é cliente vem aqui pra entrar, não pra ler. -->
+    <nav class="hidden items-center gap-8 text-[14px] text-white/70 md:flex">
+      <a href="#recursos" class="hover:text-white">Recursos</a>
+      <a href="#papel" class="hover:text-white">Impressão</a>
+      <a href="#automacao" class="hover:text-white">Cancela</a>
+      <a href="#planos" class="hover:text-white">Planos</a>
+      <a href="#contato" class="hover:text-white">Contato</a>
+    </nav>
+
+    <a href="https://parking.estacmobile.com.br"
+       class="rounded-lg bg-ambar px-5 py-2.5 text-[14px] font-semibold text-marinho hover:brightness-105">
+      Entrar
+    </a>
+  </div>
+</header>
+
+<section class="bg-white py-16 sm:py-20">
+  <div class="mx-auto max-w-3xl px-6">
+
+    <p class="text-[12.5px] font-bold uppercase tracking-widest text-ambar">Legal</p>
+    <h1 class="mt-3 font-titulo text-[32px] font-bold text-marinho sm:text-[38px]">Política de Privacidade</h1>
+    <p class="mt-4 text-[13px] text-slate-400">Última atualização: [defina a data antes de publicar]</p>
+
+    <p class="mt-8 text-[15px] leading-relaxed text-slate-600">
+      Esta Política de Privacidade descreve como a EstacMobile coleta, usa, armazena e protege
+      dados pessoais de clientes, usuários da Plataforma e, quando aplicável, de motoristas
+      cujos dados trafegam pelo sistema (ex.: placa, cartão de acesso), em conformidade com a
+      Lei Geral de Proteção de Dados (Lei 13.709/2018 — LGPD).
+    </p>
+
+    <h2 class="mt-10 font-titulo text-[20px] font-bold text-marinho">1. Dados que coletamos</h2>
+    <ul class="mt-3 space-y-2 text-[15px] leading-relaxed text-slate-600">
+      <li class="flex gap-3"><span class="text-ambar">▸</span> Dados de cadastro do Cliente: nome, e-mail, telefone, CNPJ/CPF, endereço do pátio.</li>
+      <li class="flex gap-3"><span class="text-ambar">▸</span> Dados operacionais: placas de veículos, horários de entrada e saída, cartões de mensalista, valores cobrados.</li>
+      <li class="flex gap-3"><span class="text-ambar">▸</span> Dados técnicos: endereço IP, logs de acesso ao sistema e ao aplicativo.</li>
+      <li class="flex gap-3"><span class="text-ambar">▸</span> Dados de reconhecimento facial, quando essa funcionalidade é ativada pelo Cliente, mediante consentimento do motorista ou base legal aplicável definida pelo próprio Cliente enquanto operador do pátio.</li>
+    </ul>
+
+    <h2 class="mt-10 font-titulo text-[20px] font-bold text-marinho">2. Para que usamos os dados</h2>
+    <p class="mt-3 text-[15px] leading-relaxed text-slate-600">
+      Usamos os dados para viabilizar o funcionamento do sistema (liberar cancela, calcular
+      cobrança, emitir relatórios), dar suporte técnico, cumprir obrigações legais e, quando
+      autorizado, enviar comunicações sobre o produto.
+    </p>
+
+    <h2 class="mt-10 font-titulo text-[20px] font-bold text-marinho">3. Com quem compartilhamos</h2>
+    <p class="mt-3 text-[15px] leading-relaxed text-slate-600">
+      Não vendemos dados pessoais. Compartilhamos dados apenas com prestadores que operam a
+      infraestrutura do serviço (hospedagem, processamento de pagamento, envio de mensagens) e
+      quando exigido por lei ou ordem judicial.
+    </p>
+
+    <h2 class="mt-10 font-titulo text-[20px] font-bold text-marinho">4. Armazenamento e segurança</h2>
+    <p class="mt-3 text-[15px] leading-relaxed text-slate-600">
+      Os dados são armazenados em servidores com controles de acesso e criptografia adequados
+      ao tipo de informação. Mesmo com essas medidas, nenhum sistema é 100% livre de risco, e
+      qualquer incidente relevante será comunicado conforme exige a LGPD.
+    </p>
+
+    <h2 class="mt-10 font-titulo text-[20px] font-bold text-marinho">5. Seus direitos</h2>
+    <p class="mt-3 text-[15px] leading-relaxed text-slate-600">
+      Você pode solicitar confirmação de tratamento, acesso, correção, anonimização, portabilidade
+      ou eliminação dos seus dados pessoais, além de informações sobre com quem compartilhamos
+      esses dados, entrando em contato pelo canal abaixo.
+    </p>
+
+    <h2 class="mt-10 font-titulo text-[20px] font-bold text-marinho">6. Retenção dos dados</h2>
+    <p class="mt-3 text-[15px] leading-relaxed text-slate-600">
+      Mantemos os dados pelo tempo necessário para cumprir as finalidades descritas nesta
+      Política e obrigações legais (fiscais, contratuais), sendo eliminados ou anonimizados
+      após esse período, salvo exigência legal em contrário.
+    </p>
+
+    <h2 class="mt-10 font-titulo text-[20px] font-bold text-marinho">7. Contato do Encarregado (DPO)</h2>
+    <p class="mt-3 text-[15px] leading-relaxed text-slate-600">
+      Para exercer seus direitos ou tirar dúvidas sobre tratamento de dados, escreva para
+      <a href="mailto:privacidade@estacmobile.com.br" class="font-semibold text-marinho underline underline-offset-2">privacidade@estacmobile.com.br</a>.
+    </p>
+
+    <h2 class="mt-10 font-titulo text-[20px] font-bold text-marinho">8. Alterações desta Política</h2>
+    <p class="mt-3 text-[15px] leading-relaxed text-slate-600">
+      Esta Política pode ser atualizada periodicamente. Mudanças relevantes serão comunicadas
+      pelos mesmos canais usados para avisos importantes do produto.
+    </p>
+
+    <p class="mt-10 text-[13px] text-slate-400">
+      Este texto é um modelo de referência e não substitui a revisão de um advogado antes da
+      publicação — preencha os campos entre colchetes e ajuste conforme sua operação real
+      (ex.: se usa reconhecimento facial, quem são os fornecedores de infraestrutura, etc.).
+    </p>
+
+  </div>
+</section>
+
+<footer class="bg-marinho py-12">
+  <div class="mx-auto max-w-[1400px] px-6">
+    <div class="flex flex-col items-center justify-between gap-6 text-center sm:flex-row sm:text-left">
+      <div>
+        <p class="font-titulo text-[17px] font-bold text-white">EstacMobile</p>
+        <p class="mt-1 text-[12.5px] text-white/40">Gestão de estacionamento · CNPJ 00.000.000/0001-00</p>
+      </div>
+      <a href="https://parking.estacmobile.com.br"
+         class="rounded-lg border border-white/20 px-6 py-2.5 text-[13px] font-semibold text-white hover:bg-white/5">
+        Área do cliente
+      </a>
+    </div>
+    <div class="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-center sm:flex-row sm:text-left">
+      <p class="text-[12px] text-white/35">© 2026 EstacMobile. Todos os direitos reservados.</p>
+      <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[12.5px] text-white/50">
+        <a href="quem-somos.html" class="hover:text-white">Quem somos</a>
+        <a href="termos-de-uso.html" class="hover:text-white">Termos de Uso</a>
+        <a href="politica-de-privacidade.html" class="hover:text-white">Política de Privacidade</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+
+</body>
+</html>
