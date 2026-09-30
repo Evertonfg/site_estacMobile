@@ -1,0 +1,4 @@
+# Só o que é página entra na imagem.
+Dockerfile
+.dockerignore
+*.md
